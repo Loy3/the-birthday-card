@@ -1,10 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import Card from './Components/Card';
+// import { useMediaQuery } from 'react-native-media-query';
 
 export default function App() {
+  // const { mql } = useMediaQuery();
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      {/* <View style={[styles.container, mql]}> */}
+      <Card />
       <StatusBar style="auto" />
     </View>
   );
