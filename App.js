@@ -5,9 +5,9 @@ import Card from './Components/Card';
 import { useFonts } from 'expo-font';
 export default function App() {
   // const { mql } = useMediaQuery();
-  useFonts({
-    "londrina" : require("./assets/Fonts/Londrina_Shadow/LondrinaShadow-Regular.ttf")
-  })
+  // useFonts({
+  //   "londrina" : require("./assets/Fonts/Londrina_Shadow/LondrinaShadow-Regular.ttf")
+  // })
   return (
     <View style={styles.container}>
       {/* <View style={[styles.container, mql]}> */}
