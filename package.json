@@ -18,7 +18,8 @@
     "react-native-media-queries": "^0.3.0",
     "react-native-media-query": "^2.0.1",
     "react-native-web": "^0.18.12",
-    "react-responsive": "^9.0.2"
+    "react-responsive": "^9.0.2",
+    "expo-screen-orientation": "~6.0.5"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

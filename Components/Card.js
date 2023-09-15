@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet, Text, TouchableOpacity, TextInput, ImageBackground, Image, ScrollView } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, TextInput, TouchableWithoutFeedback, Image, ScrollView, KeyboardAvoidingView, Keyboard, Button } from 'react-native';
 import bg from "../assets/birthdaycard.png";
 import rec from "../assets/Icons/rec.png";
 import snd from "../assets/Icons/sender.png";
 import msg from "../assets/Icons/message.png";
 
+import * as ScreenOrientation from 'expo-screen-orientation';
 
 export default function Card() {
     // const { mql } = useMediaQuery();
@@ -13,6 +14,9 @@ export default function Card() {
     const [message, setMessage] = useState("");
     const [sender, setSender] = useState("");
 
+    useState(() => {
+        ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE);
+    }, [])
 
     function clearState() {
         setRecipient("");
@@ -32,15 +36,19 @@ export default function Card() {
         console.log(sender);
     }, [sender])
 
+
+
+
+
     return (
 
-        <View style={[styles.container, { transform: [{ rotate: '90deg' }] }]}>
+        <View style={[styles.container,]}>
             <ScrollView scrollEnabled={true} >
                 <View style={styles.dirct}>
                     <View style={styles.card_form}>
 
                         <View style={styles.form}>
-                            <Text style={styles.title}>Card Details.</Text>
+                            {/* <Text style={styles.title}>Card Details.</Text> */}
                             <View style={{ flexDirection: 'row' }}>
                                 <View style={styles.form_recep}>
                                     <Image style={styles.formImage} source={rec} />
@@ -61,7 +69,7 @@ export default function Card() {
                                     <Image style={styles.formImage} source={msg} />
                                     <Text style={styles.formTitle}>Message</Text>
                                     <TextInput style={styles.formTextArea}
-                                        onChangeText={(text) => setMessage(text)} multiline numberOfLines={6} placeholder="Message:" />
+                                        onChangeText={(text) => setMessage(text)} multiline numberOfLines={2} placeholder="Message:" />
                                 </View>
 
                                 <TouchableOpacity style={styles.clearBtn}>
@@ -89,12 +97,12 @@ export default function Card() {
 
 
                     {/* <View style={styles.card_display}>
-                    <ImageBackground source={bg} style={styles.background}>
-                        <View style={styles.cont}>
-                            <Text style={styles.text}>Hello, world!</Text>
-                        </View>
-                    </ImageBackground>
-                </View> */}
+                        <ImageBackground source={bg} style={styles.background}>
+                            <View style={styles.cont}>
+                                <Text style={styles.text}>Hello, world!</Text>
+                            </View>
+                        </ImageBackground>
+        </View> */}
                 </View>
             </ScrollView>
         </View>
@@ -117,11 +125,12 @@ const styles = StyleSheet.create({
     // },
     container: {
         // flex: 1,
-        marginRight: 450,
+        // marginRight: 450,
         height: "100%",
-        width: 850,
+        width: "100%",
         backgroundColor: "#f3f9f5",
-        alignItems: "center"
+        alignItems: "center",
+        // position: "fixed"
     },
     card_form: {
         width: "50%",
@@ -135,7 +144,7 @@ const styles = StyleSheet.create({
         flexDirection: "row"
     },
     form: {
-        width: 350
+        width: 380
     },
     title: {
         fontSize: 25,
@@ -146,8 +155,8 @@ const styles = StyleSheet.create({
     },
     form_recep: {
         position: "relative",
-        width: "52%",
-        margin: "1%",
+        width: 185,
+        margin: 5,
         backgroundColor: "white",
         height: 100,
         shadowColor: '#5bb26d',
@@ -160,8 +169,8 @@ const styles = StyleSheet.create({
     },
     form_sender: {
         position: "relative",
-        width: "52%",
-        margin: "1%",
+        width: 185,
+        margin: 5,
         backgroundColor: "white",
         height: 100,
         shadowColor: '#5bb26d',
@@ -174,15 +183,15 @@ const styles = StyleSheet.create({
     },
     form_msg: {
         position: "relative",
-        width: "100%",
+        width: 380,
         backgroundColor: "white",
-        height: 100,
+        height: 120,
         shadowColor: '#5bb26d',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
         elevation: 5,
-        marginTop: 50,
+        marginTop: 35,
         borderRadius: 10
     },
 
@@ -196,7 +205,7 @@ const styles = StyleSheet.create({
     },
     formTitle: {
         position: "absolute",
-        top: 25,
+        top: 22,
         left: 20,
         fontSize: 15,
         fontWeight: "bold",
@@ -204,9 +213,9 @@ const styles = StyleSheet.create({
     },
     formInput: {
         position: "absolute",
-        top: 60,
+        top: 50,
         left: 10,
-        width: "87%",
+        width: "90%",
         backgroundColor: "#f3f9f5",
         paddingVertical: 15,
         paddingHorizontal: 10,
@@ -215,13 +224,13 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
         elevation: 5,
-        outlineStyle: "none"
+        // outlineStyle: "none"
     },
     formTextArea: {
         position: "absolute",
         top: 60,
         left: 25,
-        width: "87%",
+        width: "90%",
         backgroundColor: "#f3f9f5",
         paddingVertical: 15,
         paddingHorizontal: 10,
@@ -230,11 +239,11 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
         elevation: 5,
-        outlineStyle: "none"
+        // outlineStyle: "none"
     },
     clearBtn: {
-        marginVertical: 30,
-        width: 350,
+        marginVertical: 25,
+        width: 380,
         backgroundColor: "#5bb26d"
     },
     clearTxt: {
@@ -246,9 +255,10 @@ const styles = StyleSheet.create({
 
     card_display: {
         width: 400,
+        marginLeft:15
         // height: "100vh",
         // backgroundColor: 'green'
-        position: "relative"
+        // position: "absolute",bottom:0
     },
     bgImg: {
         width: 400,
@@ -267,13 +277,13 @@ const styles = StyleSheet.create({
         position: "absolute",
         top: 90,
         left: 110,
-        // fontFamily: "londrina",
+        fontFamily: "londrina",
         fontWeight: "bold",
         letterSpacing: 2
     },
 
     msg: {
-        // fontFamily: "londrina",
+        fontFamily: "londrina",
         color: "#95b1a9",
         width: 270,
         position: "absolute",
@@ -286,7 +296,7 @@ const styles = StyleSheet.create({
         position: "absolute",
         bottom: 100,
         left: 110,
-        // fontFamily: "londrina",
+        fontFamily: "londrina",
         fontWeight: "bold",
         letterSpacing: 2
     },
@@ -310,18 +320,18 @@ const styles = StyleSheet.create({
 /*
 
 .row {
-    margin: 0 -5px;
+ margin: 0 -5px;
 }
 
 .row:after {
-    content: "";
-    display: table;
-    clear: both;
+ content: "";
+ display: table;
+ clear: both;
 }
 
 
 .column {
-    padding: 0;
-    float: left;
+ padding: 0;
+ float: left;
 }
 */
