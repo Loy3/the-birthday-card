@@ -229,8 +229,8 @@ const styles = StyleSheet.create({
     formTextArea: {
         position: "absolute",
         top: 60,
-        left: 25,
-        width: "90%",
+        left: 10,
+        width: "95%",
         backgroundColor: "#f3f9f5",
         paddingVertical: 15,
         paddingHorizontal: 10,
@@ -255,14 +255,15 @@ const styles = StyleSheet.create({
 
     card_display: {
         width: 400,
-        marginLeft:15
-        // height: "100vh",
+        marginLeft:10,
+        // marginTop: 8,
+        height: "100%",
         // backgroundColor: 'green'
         // position: "absolute",bottom:0
     },
     bgImg: {
-        width: 400,
-        height: 400,
+        width: 410,
+        height: 410,
         // objectFit: "cover"
     },
     card_details: {
